@@ -76,6 +76,7 @@ ALTER TABLE "alunos_necessidades" ADD FOREIGN KEY ("necessidades_id") REFERENCES
 CREATE TABLE "alunos_cursos" (
   "alunos_id" serial,
   "cursos_id" serial,
+   "matricula" bigint NOT NULL,  UNIQUE,
   PRIMARY KEY ("alunos_id", "cursos_id")
 );
 

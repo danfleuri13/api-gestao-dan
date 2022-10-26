@@ -1,0 +1,13 @@
+---------Codigos 26-10-2022-----------------
+select count (*)
+from acoes
+where "motivacaoAcao" = 'fasald'
+-------------------------------------------
+select count (*)
+from alunos
+where prioridade = 'b'
+---------------------------------------------
+---------codigos implementacao-------------
+
+insert into membros_cargos (membros_id,cargos_id,"dataEntradaCargo","dataSaidaCargo")
+values ('1' , '7', '2001-02-16 20:38:40','2001-02-16 20:38:40');
