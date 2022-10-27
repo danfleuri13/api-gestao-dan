@@ -11,3 +11,9 @@ where prioridade = 'b'
 
 insert into membros_cargos (membros_id,cargos_id,"dataEntradaCargo","dataSaidaCargo")
 values ('1' , '7', '2001-02-16 20:38:40','2001-02-16 20:38:40');
+
+----------- group by ----------------------------
+select alunos_id, necessidades_id
+from alunos_necessidades
+group by alunos_id, necessidades_id 
+order by alunos_id desc ,(necessidades_id)  desc;
