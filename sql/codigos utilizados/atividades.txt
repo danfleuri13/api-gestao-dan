@@ -1,0 +1,61 @@
+atividade 1
+
+select AVG(cursos_id)::numeric(10,2)
+from alunos_cursos
+
+atividade 2
+
+select alunos_id, 
+count(alunos_id)
+from alunos_necessidades
+group by alunos_id
+order by alunos_id asc;
+
+atividade 3
+
+select 
+count(*)
+from alunos_cursos
+where cursos_id = 3 or cursos_id = 4;
+
+
+atividade 4
+
+select "nomeAluno", "descricaoCurso" ,"matricula"
+from alunos_cursos
+inner join alunos
+on id = alunos_id
+inner join cursos
+on cursos.id = cursos_id
+order by "nomeAluno" asc
+
+
+atividade 5
+
+select "descricaoSimples", "alunos_id" 
+from necessidades
+inner join alunos_necessidades
+on necessidades.id = alunos_id
+where
+order by "descricaoSimples" asc
+
+
+atividade 6
+
+select "necessidades_id",
+count ("necessidades_id")
+from alunos_necessidades
+group by "necessidades_id"
+order by count desc
+
+atividade 7
+
+select "nomeMonitor", "nomeMembro", "descricaoAcao"
+from membros_cargos
+inner join monitores
+on membros_id = supervisor
+inner join membros
+on membros.id = cargos_id
+inner join acoes
+on monitor = monitores.id
+order by "nomeMonitor" asc
