@@ -33,7 +33,7 @@ Table acoes {
   dataHoraCriacao timestamptz [default: 'now()']
   motivacaoAcao varchar(255)
   resultadoAcao varchar(255)
-  dataHoraResultado timestamptz
+  dataHoraResultado timestamptz 
   aluno integer [not null]
   monitor integer [not null]
 }
