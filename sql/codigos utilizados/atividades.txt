@@ -1,0 +1,129 @@
+atividade 1
+
+select AVG(cursos_id)::numeric(10,2)
+from alunos_cursos
+
+atividade 2 a)
+
+select id, "nomeAluno",
+count (alunos.id)
+from alunos 
+full outer join alunos_necessidades
+on alunos.id = alunos_id
+group by alunos.id
+order by alunos.id asc;
+
+
+atividade 2 b)
+
+select id, "nomeAluno",
+count (alunos.id) as necessidades
+from alunos 
+full outer join alunos_necessidades
+on alunos.id = alunos_id
+group by alunos.id
+order by count(*) asc;
+
+atividade 3 xxxx
+create view modalidadeView as select modalidade
+from cursos 
+
+select id, 
+count (alunos.id) as necessidades
+from alunos 
+full outer join alunos_necessidades
+on alunos.id = alunos_id
+group by alunos.id
+Having AVG (alunos.id) >0
+order by id asc;
+
+atividade 4
+
+select "nomeAluno", "descricaoCurso" ,"matricula"
+from alunos_cursos
+inner join alunos
+on id = alunos_id
+inner join cursos
+on cursos.id = cursos_id
+order by "nomeAluno" asc
+
+
+atividade 5 xxx
+
+select "descricaoSimples", "alunos_id" 
+from necessidades
+inner join alunos_necessidades
+on necessidades.id = alunos_id
+where
+order by "descricaoSimples" asc
+
+
+atividade 6
+
+select "necessidades_id",
+count ("necessidades_id")
+from alunos_necessidades
+group by "necessidades_id"
+order by count desc /*/asc para ver ascendente*/
+
+
+atividade 7
+
+
+
+
+atividade 8
+
+
+
+
+atividade 9
+
+select "nomeMonitor", "nomeMembro", "descricaoAcao"
+from membros_cargos
+inner join monitores
+on membros_id = supervisor
+inner join membros
+on membros.id = cargos_id
+inner join acoes
+on monitor = monitores.id
+order by "nomeMonitor" asc
+
+
+atividade 10
+
+select "nomeMonitor", "nomeMembro"
+from membros_cargos
+inner join monitores
+on membros_id = supervisor
+inner join membros
+on membros.id = cargos_id
+inner join acoes
+on monitor = monitores.id
+
+order by "nomeMonitor" desc
+
+atividade 11
+
+select id, "descricaoCargo",
+count (cargos.id)
+from cargos
+full outer join membros_cargos
+on cargos.id = membros_id
+group by cargos.id
+order by cargos.id asc;
+
+atividade 12
+
+select "nomeMembro","formacaoMembro","descricaoCargo"
+from membros
+full outer join cargos
+on cargos.id = membros.id
+full outer join membros_cargos
+on membros.id = membros_id
+
+
+where cargos.id = 1 or cargos.id = 6 
+or cargos.id = 4 
+or cargos.id = 5;
+

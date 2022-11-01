@@ -1,0 +1,5 @@
+select *
+from
+	"alunos_cursos"
+full JOIN cursos
+	on "alunos_id" = id
