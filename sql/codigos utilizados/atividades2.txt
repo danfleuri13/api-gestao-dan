@@ -1,0 +1,182 @@
+----------atividade 1-------------
+
+select AVG(cursos_id)::numeric(10,2)
+from alunos_cursos
+
+-----------atividade 2------------------------
+ a)
+
+select id, "nomeAluno",
+count (alunos.id)
+from alunos 
+full outer join alunos_necessidades
+on alunos.id = alunos_id
+group by alunos.id
+order by alunos.id asc;
+
+
+ b)
+
+select id, "nomeAluno",
+count (alunos.id) as necessidades
+from alunos 
+full outer join alunos_necessidades
+on alunos.id = alunos_id
+group by alunos.id
+order by count(*) asc;
+
+-----------------atividade 3 ---------------
+
+CREATE VIEW totalNecessidades AS
+SELECT alunos.id AS "id do aluno",
+	COUNT (alunos_necessidades.necessidades_id) AS "TTnecessidades",
+	cursos.modalidade
+FROM alunos
+
+inner JOIN alunos_necessidades
+	ON alunos.id = alunos_necessidades.alunos_id
+inner JOIN alunos_cursos
+	ON alunos.id = alunos_cursos.alunos_id
+inner JOIN cursos
+	ON alunos_cursos.cursos_id = cursos.id
+	
+GROUP BY alunos.id, cursos.modalidade
+ORDER BY alunos.id;
+
+SELECT modalidade,
+AVG("TTnecessidades")::NUMERIC(10,2) AS "Media"
+FROM totalNecessidades
+GROUP BY modalidade
+
+------------atividade 4---------------------
+
+select "nomeAluno", "descricaoCurso" ,"matricula"
+from alunos_cursos
+inner join alunos
+on id = alunos_id
+inner join cursos
+on cursos.id = cursos_id
+order by "nomeAluno" asc
+
+
+----------atividade 5-------------
+
+select  "descricaoCurso", 
+count (alunos_id) as alunosMatriculados
+from cursos, alunos_cursos
+where 
+cursos.id = cursos_id
+group by "descricaoCurso"
+order by count(*) asc /* desc */;
+
+------------atividade 6-----------------
+
+-- create contadorNecessidades as
+-- select "necessidades_id",
+-- count ("necessidades_id")
+-- from alunos_necessidades
+-- group by "necessidades_id"
+-- order by count desc 
+
+select  max(count), min(count)
+from public.contadornecessidades
+
+
+
+--------------atividade 7 --------------
+
+create view departamentoAluno as
+SELECT alunos.id AS "id do aluno",
+	COUNT (alunos_cursos.alunos_id) AS "cursando",
+	cursos.departamento
+FROM alunos
+
+
+inner JOIN alunos_cursos
+	ON alunos.id = alunos_cursos.alunos_id
+inner JOIN cursos
+	ON alunos_cursos.cursos_id = cursos.id
+	
+GROUP BY alunos.id, cursos.departamento
+ORDER BY alunos.id;
+
+select departamento,
+count ("cursando")
+from departamentoAluno
+group by departamento
+order by departamento asc;
+
+
+--------------atividade 8 -----------------
+create view modalidadeAluno as
+SELECT alunos.id AS "id do aluno",
+	COUNT (alunos_necessidades.alunos_id) AS "modalTT",
+	cursos.modalidade
+FROM alunos
+
+inner JOIN alunos_necessidades
+	ON alunos.id = alunos_necessidades.alunos_id
+inner JOIN alunos_cursos
+	ON alunos.id = alunos_cursos.alunos_id
+inner JOIN cursos
+	ON alunos_cursos.cursos_id = cursos.id
+	
+GROUP BY alunos.id, cursos.modalidade
+ORDER BY alunos.id;
+
+select modalidade,
+count ("modalTT")
+from modalidadeAluno
+group by modalidade
+order by modalidade asc;
+
+
+---------------atividade 9----------------
+
+select "nomeMonitor", "nomeMembro", "descricaoAcao"
+from membros_cargos
+inner join monitores
+on membros_id = supervisor
+inner join membros
+on membros.id = cargos_id
+inner join acoes
+on monitor = monitores.id
+order by "nomeMonitor" asc
+
+
+------------atividade 10--------------
+
+select distinct "nomeMonitor", "nomeMembro"
+from membros_cargos
+inner join monitores
+on membros_id = supervisor
+inner join membros
+on membros.id = cargos_id
+inner join acoes
+on monitor = monitores.id
+
+order by "nomeMonitor" desc
+
+--------------atividade 11---------------
+
+select id, "descricaoCargo",
+count (cargos.id) as "quantidade"
+from cargos
+full outer join membros_cargos
+on cargos.id = membros_id
+group by cargos.id
+order by cargos.id asc;
+
+----------atividade 12-----------------
+
+select "nomeMembro","formacaoMembro","descricaoCargo"
+from membros
+full outer join cargos
+on cargos.id = membros.id
+full outer join membros_cargos
+on membros.id = membros_id
+
+
+where cargos.id = 1 or cargos.id = 6 
+or cargos.id = 4 
+or cargos.id = 5;
