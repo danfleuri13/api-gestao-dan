@@ -133,29 +133,23 @@ order by modalidade asc;
 
 ---------------atividade 9----------------
 
-select "nomeMonitor", "nomeMembro", "descricaoAcao"
-from membros_cargos
-inner join monitores
-on membros_id = supervisor
-inner join membros
-on membros.id = cargos_id
-inner join acoes
-on monitor = monitores.id
-order by "nomeMonitor" asc
+Select monitor,"nomeMonitor",
+count (monitor) 
+from acoes, monitores
+where monitor = monitores.id
 
+group by monitor, "nomeMonitor" 
+order by count desc;
 
 ------------atividade 10--------------
 
-select distinct "nomeMonitor", "nomeMembro"
-from membros_cargos
-inner join monitores
-on membros_id = supervisor
-inner join membros
-on membros.id = cargos_id
-inner join acoes
-on monitor = monitores.id
 
-order by "nomeMonitor" desc
+Select "nomeMembro","nomeMonitor"
+from membros 
+
+full outer join monitores
+ on supervisor = membros.id
+ 
 
 --------------atividade 11---------------
 
